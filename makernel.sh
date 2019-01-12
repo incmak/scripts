@@ -1,5 +1,5 @@
 #
-# Custom build script for Shadow kernel
+# Custom build script for makernel kernel
 #
 # Copyright 2016 Umang Leekha (Umang96@xda)
 #
@@ -21,8 +21,8 @@ white='\033[0m'
 red='\033[0;31m'
 gre='\e[0;32m'
 echo -e ""
-echo -e "$gre ====================================\n\n Welcome to Shadow building program !\n\n ===================================="
-echo -e "$gre \n 1.Build Shadow\n\n 2.Make Menu Config\n\n 3.Clean Source\n\n 4.Exit\n"
+echo -e "$gre ====================================\n\n Welcome tomakernel building program !\n\n ===================================="
+echo -e "$gre \n 1.Build makernel\n\n 2.Make Menu Config\n\n 3.Clean Source\n\n 4.Exit\n"
 echo -n " Enter your choice:"
 read qc
 echo -e "$white"
@@ -36,7 +36,7 @@ echo -e "$yellow Running make clean before compiling \n$white"
 make clean && make mrproper
 make O=out clean
 make O=out mrproper
-make O=out beryllium_defconfig
+make O=out franco_defconfig
 
 export KBUILD_BUILD_HOST="gcp"
 export KBUILD_BUILD_USER="incmak"
@@ -63,25 +63,25 @@ cp $KERNEL_DIR/out/arch/arm64/boot/Image.gz $KERNEL_DIR/build/kernel/
 cd $KERNEL_DIR/build/
 echo -n " Enter release version:"
 read rv
-zip -r shadow-$DEVICE-$VERSION-$rv-$date.zip * > /dev/null
+zip -rmakernel-$DEVICE-$VERSION-$rv-$date.zip * > /dev/null
 echo -n "Upload zip to gdrive ? Y/N:"
 read gd
 if [ $gd == Y ]; then
-gdrive upload shadow-$DEVICE-$VERSION-$rv-$date.zip
+gdrive upload makernel-$DEVICE-$VERSION-$rv-$date.zip
 fi
 echo -e "$gre << Build completed in $(($Diff / 60)) minutes and $(($Diff % 60)) seconds >> \n $white"
 fi
 elif [ $qc == 2 ]; then
 make O=out clean
-make O=out shadow_defconfig
+make O=out franco_defconfig
 make O=out menuconfig
-./shadow.sh
+./makernel.sh
 elif [ $qc == 3 ]; then
 echo -e "$yellow Cleaning... \n$white"
 make clean && make mrproper
 make O=out clean
 make O=out mrproper
-./shadow.sh
+./makernel.sh
 elif [ $qc == 4 ]; then
 echo -e "$yellow good bye ! \n$white"
 fi
