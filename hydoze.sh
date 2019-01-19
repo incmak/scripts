@@ -28,7 +28,7 @@ read qc
 echo -e "$white"
 KERNEL_DIR=$PWD
 export ARCH=arm64
-export CROSS_COMPILE="/home/ahmedmuieen/android/toolchain/bin/aarch64-linux-gnu-"
+export CROSS_COMPILE="/home/ubuntu/android/toolchain/bin/aarch64-linux-gnu-"
 if [ $qc == 1 ]; then
 echo -e "$yellow Building Kernel \n $white"
 Start=$(date +"%s")
@@ -36,7 +36,7 @@ echo -e "$yellow Running make clean before compiling \n$white"
 make clean && make mrproper
 make O=out clean
 make O=out mrproper
-make O=out franco_defconfig
+make O=out beryllium_defconfig
 
 export KBUILD_BUILD_HOST="gcp"
 export KBUILD_BUILD_USER="incmak"
